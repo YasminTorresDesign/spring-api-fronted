@@ -22,4 +22,10 @@ public interface SerieRepository extends JpaRepository<Serie,Long> {
 
     @Query("SELECT e FROM Serie s  JOIN s.episodios e WHERE s.id = :id AND e.temporada = :numeroTemporada")
     List<Episodio> obtenerTemporadasPorNumero(long id, long numeroTemporada);
+
+    //@Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s = :serie ORDER BY e.evaluacion DESC LIMIT 5 ")
+    //List<Episodio> top5Episodios(Serie serie);
+
+    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s = :serie ORDER BY e.evaluacion DESC LIMIT 5")
+    List<Episodio> top5Episodios(Serie serie);
 }
